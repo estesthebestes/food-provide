@@ -1,6 +1,8 @@
-import { userRouter } from 'next/router';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 import Layout from '../../components/Layout';
+import data from '../../utils/data';
 
 {
 	/* slug means: A slug is a human-readable, unique identifier, used 
@@ -11,5 +13,17 @@ import Layout from '../../components/Layout';
 }
 export default function ProductScreen() {
 	const { query } = useRouter();
-	return <Layout title={product.name}></Layout>;
+	const { slug } = query;
+	// x => x.slug === slug is a function that returns true if the slug of the product is equal to the slug of the query
+	const product = data.products.find((x) => x.slug === slug);
+	if (!product) {
+		return <div>This product was not found. </div>;
+	}
+	return (
+		<Layout title={product.name}>
+			<div className='py-2'>
+				<Link href='/'>Back to Products </Link>
+			</div>
+		</Layout>
+	);
 }
