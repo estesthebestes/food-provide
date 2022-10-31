@@ -3,6 +3,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useContext } from 'react';
 import { Store } from '../utils/Store';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 // this is the layout component, it is the base styling for all of the web pages going to be displayed
 
@@ -10,10 +12,10 @@ export default function layout({ title, children }) {
 	// we are getting the state of the cart
 	const { state, dispatch } = useContext(Store);
 	const { cart } = state;
-	// const [cartItemsCount, setCartItemsCount] = useState(0);
-	// useEffect(() => {
-	// 	setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
-	// }, [cart.cartItems]);
+	const [cartItemsCount, setCartItemsCount] = useState(0);
+	useEffect(() => {
+		setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
+	}, [cart.cartItems]);
 
 	return (
 		<>
@@ -36,11 +38,11 @@ export default function layout({ title, children }) {
 								Cart
 								{/* if cart.cartItem is greater than zero it means that you have
 								at least one item within the cart  */}
-								{cart.cartItems.length > 0 && (
+								{cartItemsCount > 0 && (
 									// we are using a reduce function on the cart.cartItems and an accumulator
 									// to show the total number of items in the cart
 									<span className='ml-1 rounded-full bg-indigo-400 px-2 py-1 text-s font-bold text-white'>
-										{cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+										{cartItemsCount}
 									</span>
 								)}
 							</Link>

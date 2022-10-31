@@ -31,16 +31,16 @@ function reducer(state, action) {
 				  state.cart.cartItems.map((item) =>
 						//otherwise we keep the cart items as they are. If you add the same item, you only update the qty
 						item.name === existItem.name ? newItem : item
-				  )
-				: //  this concatonates the new item to the end of the existing cart items
-				  [...state.cart.cartItems, newItem];
-
+				  ) //  this concatonates the new item to the end of the existing cart items
+				: [...state.cart.cartItems, newItem];
+			Cookies.set('cart', JSON.stringify({ ...state.cart, cartItems }));
 			return { ...state, cart: { ...state.cart, cartItems } };
 		}
 		case 'CART_REMOVE_ITEM': {
 			const cartItems = state.cart.cartItems.filter(
 				(item) => item.slug !== action.payload.slug
 			);
+			Cookies.set('cart', JSON.stringify({ ...state.cart, cartItems }));
 			return { ...state, cart: { ...state.cart, cartItems } };
 		}
 		// default state of the cart
