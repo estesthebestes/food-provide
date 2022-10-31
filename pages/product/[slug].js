@@ -28,6 +28,10 @@ export default function ProductScreen() {
 	const addToCartHandler = () => {
 		const existItem = state.cart.cartItems.find((x) => x.slug === product.slug);
 		const quantity = existItem ? existItem.quantity + 1 : 1;
+
+		if (product.countNeeded - product.countInStock < quantity) {
+			alert('Thank you! We have met the need!');
+		}
 		// having this code allows us to add the product to the cart
 		dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
 	};

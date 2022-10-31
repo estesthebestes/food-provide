@@ -7,8 +7,8 @@ const data = {
 			image: '/images/apple.jpg',
 			price: 1.99,
 			brand: 'Aldi',
-			countInStock: 10,
-			countNeeded: 90,
+			countInStock: 5,
+			countNeeded: 10,
 			description:
 				'Give the gift of health with this delicious apple! It is a great source of fiber and vitamin C. It is also a great snack for on the go!',
 		},
