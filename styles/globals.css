@@ -28,7 +28,11 @@ a {
 		background: black;
 	}
 }
-
+input,
+select,
+textarea {
+	@apply rounded border p-2 ring-indigo-400 focus:ring;
+}
 .card {
 	@apply mb-5 block rounded-lg border-gray-200 shadow-md;
 }
