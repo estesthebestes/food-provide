@@ -35,7 +35,7 @@ export default function layout({ title, children }) {
 									// we are using a reduce function on the cart.cartItems and an accumulator
 									// to show the total number of items in the cart
 									<span className='ml-1 rounded-full bg-indigo-400 px-2 py-1 text-s font-bold text-white'>
-										{cart.cartItems.reduce((a, c) => a + c.qty, 0)}
+										{cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
 									</span>
 								)}
 							</Link>
