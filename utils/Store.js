@@ -1,10 +1,13 @@
 import { createContext, useReducer } from 'react';
+import Cookies from 'js-cookie';
 
 export const Store = createContext();
 
 // inside of the cart we have a cart item, by default it is empty
 const initialState = {
-	cart: { cartItems: [] },
+	cart: Cookies.get('cart')
+		? JSON.parse(Cookies.get('cart'))
+		: { cartItems: [] },
 };
 
 //accepts two parameters: the state and the action
