@@ -1,10 +1,15 @@
 import React, { Children } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useContext } from 'react';
+import { Store } from '../utils/Store';
 
 // this is the layout component, it is the base styling for all of the web pages going to be displayed
 
 export default function layout({ title, children }) {
+	// we are getting the state of the cart
+	const { state, dispatch } = useContext(Store);
+	const { cart } = state;
 	return (
 		<>
 			<Head>
@@ -24,6 +29,15 @@ export default function layout({ title, children }) {
 						<div>
 							<Link href='/cart' className='p-2'>
 								Cart
+								{/* if cart.cartItem is greater than zero it means that you have
+								at least one item within the cart  */}
+								{cart.cartItems.length > 0 && (
+									// we are using a reduce function on the cart.cartItems and an accumulator
+									// to show the total number of items in the cart
+									<span className='ml-1 rounded-full bg-indigo-400 px-2 py-1 text-s font-bold text-white'>
+										{cart.cartItems.reduce((a, c) => a + c.qty, 0)}
+									</span>
+								)}
 							</Link>
 							<Link href='/login' className='p-2'>
 								Login

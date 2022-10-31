@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useContext } from 'react';
 import Layout from '../../components/Layout';
 import data from '../../utils/data';
+import { Store } from '../../utils/Store';
 
 {
 	/* slug means: A slug is a human-readable, unique identifier, used 
@@ -13,6 +14,8 @@ import data from '../../utils/data';
       definition from https://itnext.io/whats-a-slug-f7e74b6c23e0 */
 }
 export default function ProductScreen() {
+	const { state, dispatch } = useContext(Store);
+
 	const { query } = useRouter();
 	const { slug } = query;
 	// x => x.slug === slug is a function that returns true if the slug of the product is equal to the slug of the query
@@ -20,6 +23,13 @@ export default function ProductScreen() {
 	if (!product) {
 		return <div>This product was not found. </div>;
 	}
+
+	// this is using the code from Store.js
+	const addToCartHandler = () => {
+		// having this code allows us to add the product to the cart
+		dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, qty: 1 } });
+	};
+
 	return (
 		<Layout title={product.name}>
 			<div className='py-2'>
@@ -42,7 +52,7 @@ export default function ProductScreen() {
 					<li>
 						<li>Category: {product.category}</li>
 						<li>Brand: {product.brand}</li>
-						<li>How much they need: {product.countNeeded}</li>
+						<li>Goal Stock: {product.countNeeded}</li>
 						<li>Current Stock: {product.countInStock}</li>
 						<li>Why it's needed: {product.description}</li>
 					</li>
@@ -53,7 +63,12 @@ export default function ProductScreen() {
 							<div> Price </div>
 							<div>${product.price}</div>
 						</div>
-						<button className='primary-button w-full'> Add to Cart </button>
+						<button
+							className='primary-button w-full'
+							onClick={addToCartHandler}
+						>
+							Add to Cart
+						</button>
 					</div>
 				</div>
 			</div>
