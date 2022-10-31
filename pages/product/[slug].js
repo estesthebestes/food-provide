@@ -16,6 +16,8 @@ import { Store } from '../../utils/Store';
 export default function ProductScreen() {
 	const { state, dispatch } = useContext(Store);
 
+	const router = useRouter();
+
 	const { query } = useRouter();
 	const { slug } = query;
 	// x => x.slug === slug is a function that returns true if the slug of the product is equal to the slug of the query
@@ -34,6 +36,7 @@ export default function ProductScreen() {
 		}
 		// having this code allows us to add the product to the cart
 		dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
+		// router.push('/cart');
 	};
 
 	return (
