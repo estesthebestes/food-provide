@@ -5,10 +5,12 @@ import { useContext } from 'react';
 import { Store } from '../utils/Store';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { Menu } from '@headlessui/react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSession } from 'next-auth/react';
 import { status } from 'next-auth/react';
+import DropdownLink from './DropdownLink';
 
 // this is the layout component, it is the base styling for all of the web pages going to be displayed
 
@@ -53,20 +55,27 @@ export default function layout({ title, children }) {
 									</span>
 								)}
 							</Link>
-							{/* if the user is logged in then we are going to display the user's name */}
+							{/* when the user is logged in we change the login button to a menu */}
 							{status === 'loading' ? (
 								'Loading'
 							) : session?.user ? (
-								session.user.name
+								<Menu as='div' className='relative inline-block'>
+									<Menu.Button className='text-indigo-500'>
+										{session.user.name}
+									</Menu.Button>
+									<Menu.Items className='absolute right-0 w-56 shadow-lg'>
+										<Menu.Item>
+											<DropdownLink className='dropdown-link' href='/profile'>
+												Profile
+											</DropdownLink>
+										</Menu.Item>
+									</Menu.Items>
+								</Menu>
 							) : (
 								<Link href='/login' className='p-2'>
 									Login
 								</Link>
 							)}
-
-							<Link href='/aboutus' className='p-2'>
-								About Us
-							</Link>
 						</div>
 					</nav>
 				</header>
