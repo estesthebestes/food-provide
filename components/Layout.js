@@ -81,7 +81,7 @@ export default function Layout({ children }) {
 						)}
 					</div>
 				</nav>
-				<main className='container m-auto mt-4 px-2 bg-white shadow-2xl rounded'>
+				<main className='container m-auto mt-4 px-2 bg-white shadow-2xl rounded bg-gradient-to-r from-white-100 via-gray-300 to-white '>
 					{children}
 				</main>
 				<footer className='flex text-white h-10 justify-center items-center shadow-inner bg-indigo-400'>

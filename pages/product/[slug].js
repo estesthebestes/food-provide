@@ -49,7 +49,7 @@ export default function ProductScreen(props) {
 						width={640}
 						height={640}
 						layout='responsive'
-						className='justify-center'
+						className='mb-2'
 					></Image>
 				</div>
 				<ul>
@@ -61,9 +61,7 @@ export default function ProductScreen(props) {
 					<li className=' mt-1 pl-1 pt-3 pb-3 shadow font-bold text-white bg-indigo-400 rounded-lg'>
 						Category: {product.category}
 					</li>
-					<li className=' mt-1 pl-1 pt-3 pb-3 shadow font-bold text-white bg-indigo-400 rounded-lg'>
-						Brand: {product.brand}
-					</li>
+
 					<li className=' mt-1 pl-1 pt-3 pb-3 shadow font-bold text-white bg-indigo-400 rounded-lg'>
 						Goal Stock: {product.countNeeded}
 					</li>
