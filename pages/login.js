@@ -28,6 +28,7 @@ export default function LoginScreen() {
 		formState: { errors },
 	} = useForm();
 
+	// this is code to handle the sign in with email and password when the user enters it
 	const submitHandler = async ({ email, password }) => {
 		try {
 			const result = await signIn('credentials', {

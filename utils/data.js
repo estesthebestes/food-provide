@@ -1,4 +1,4 @@
-// incription for the password so i is not visible in the database
+// incription for the password so it is not visible in the database
 import bcrypt from 'bcryptjs';
 
 const data = {

@@ -34,10 +34,13 @@ function reducer(state, action) {
 			Cookies.set('cart', JSON.stringify({ ...state.cart, cartItems }));
 			return { ...state, cart: { ...state.cart, cartItems } };
 		}
+		// below is the code for removing an item from the cart and the logic to intepret with the amount of items left
+
 		case 'CART_REMOVE_ITEM': {
 			const cartItems = state.cart.cartItems.filter(
 				(item) => item.slug !== action.payload.slug
 			);
+			// use coookies to have the browers store the cart items
 			Cookies.set('cart', JSON.stringify({ ...state.cart, cartItems }));
 			return { ...state, cart: { ...state.cart, cartItems } };
 		}

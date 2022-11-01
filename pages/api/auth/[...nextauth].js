@@ -6,6 +6,7 @@ import db from '../../../utils/db';
 
 export default NextAuth({
 	session: {
+		// stick with the default feature jwt encryption
 		strategy: 'jwt',
 	},
 	callbacks: {
@@ -20,7 +21,9 @@ export default NextAuth({
 			return session;
 		},
 	},
+	// providers is for the sign in with google, facebook, email, etc
 	providers: [
+		// this is for the sign in with email, I have not added the sign in with google or facebook etc yet
 		CredentialsProvider({
 			async authorize(credentials) {
 				await db.connect();
@@ -28,15 +31,17 @@ export default NextAuth({
 					email: credentials.email,
 				});
 				await db.disconnect();
+				// this is to check to make sure that the credentials are correct
 				if (user && bcryptjs.compareSync(credentials.password, user.password)) {
 					return {
 						_id: user._id,
 						name: user.name,
 						email: user.email,
-						image: 'f',
+						image: '',
 						isAdmin: user.isAdmin,
 					};
 				}
+				// if the credentials are not correct, then we return an error message
 				throw new Error('Invalid email or password');
 			},
 		}),
