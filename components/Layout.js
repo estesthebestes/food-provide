@@ -1,10 +1,10 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { UseContext } from 'react';
+import UseContext from 'react';
 import { Store } from '../utils/Store';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import UseState from 'react';
+import UseEffect from 'react';
 import { Menu } from '@headlessui/react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,10 +17,10 @@ export default function layout({ children }) {
 	const { status, data: session } = UseSession();
 
 	// we are getting the state of the cart
-	const { state } = useContext(Store);
+	const { state } = UseContext(Store);
 	const { cart } = state;
-	const [cartItemsCount, setCartItemsCount] = useState(0);
-	useEffect(() => {
+	const [cartItemsCount, setCartItemsCount] = UseState(0);
+	UseEffect(() => {
 		setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
 	}, [cart.cartItems]);
 
