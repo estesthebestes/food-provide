@@ -26,7 +26,7 @@ export default function layout({ title, children }) {
 	}, [cart.cartItems]);
 
 	return (
-		<>
+		<div>
 			<Head>
 				{/* this is saying that we are going to have a title (displayed in the tabs in the web browser and have the name of the page - provide) */}
 				<title>Provide </title>
@@ -37,7 +37,6 @@ export default function layout({ title, children }) {
 			{/* start of html  */}
 			<div className='flex min-h-screen flex-col justify-between'>
 				<header>
-					{/* below is the nav and its styling */}
 					<nav className='flex h-12 items-center px-4 justify-between shadow-md '>
 						<Link href='/ ' className='text-lg font-bold'>
 							Provide
@@ -84,6 +83,6 @@ export default function layout({ title, children }) {
 					Copyright © 2022 Provide
 				</footer>
 			</div>
-		</>
+		</div>
 	);
 }

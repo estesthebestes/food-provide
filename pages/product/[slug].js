@@ -3,8 +3,11 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import Layout from '../../components/Layout';
-import data from '../../utils/data';
 import { Store } from '../../utils/Store';
+import Product from '../../models/Product';
+import db from '../../utils/db';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 {
 	/* slug means: A slug is a human-readable, unique identifier, used 
@@ -13,17 +16,12 @@ import { Store } from '../../utils/Store';
       to see, at a glance, what the item is. 
       definition from https://itnext.io/whats-a-slug-f7e74b6c23e0 */
 }
-export default function ProductScreen() {
+export default function ProductScreen(props) {
+	const { product } = props;
 	const { state, dispatch } = useContext(Store);
-
 	const router = useRouter();
-
-	const { query } = useRouter();
-	const { slug } = query;
-	// x => x.slug === slug is a function that returns true if the slug of the product is equal to the slug of the query
-	const product = data.products.find((x) => x.slug === slug);
 	if (!product) {
-		return <div>This product was not found. </div>;
+		return <div>This product was not found.</div>;
 	}
 
 	// this is using the code from Store.js
@@ -36,7 +34,7 @@ export default function ProductScreen() {
 		}
 		// having this code allows us to add the product to the cart
 		dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
-		// router.push('/cart');
+		router.push('/cart');
 	};
 
 	return (
@@ -83,4 +81,18 @@ export default function ProductScreen() {
 			</div>
 		</Layout>
 	);
+}
+
+export async function getServerSideProps(context) {
+	const { params } = context;
+	const { slug } = params;
+
+	await db.connect();
+	const product = await Product.findOne({ slug }).lean();
+	await db.disconnect();
+	return {
+		props: {
+			product: product ? db.convertDocToObj(product) : null,
+		},
+	};
 }

@@ -26,9 +26,7 @@ function reducer(state, action) {
 			// if the item exists, we return the state
 			// we use the map function to loop through the cart items
 			const cartItems = existItem
-				? // if the item is equal to the existing item,
-				  // then we return the new quantity of items in the cart
-				  state.cart.cartItems.map((item) =>
+				? state.cart.cartItems.map((item) =>
 						//otherwise we keep the cart items as they are. If you add the same item, you only update the qty
 						item.name === existItem.name ? newItem : item
 				  ) //  this concatonates the new item to the end of the existing cart items
