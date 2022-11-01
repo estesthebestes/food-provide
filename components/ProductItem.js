@@ -16,8 +16,8 @@ export default function ProductItem({ product, addToCartHandler }) {
 					src={product.image}
 					alt={product.name}
 					className='rounded shadow'
-					width={640}
-					height={640}
+					width={600}
+					height={600}
 				></Image>
 			</Link>
 			{/* in this, using product. ***** is getting the products from our databse and using them to populate the cards according to the styling below */}
