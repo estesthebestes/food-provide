@@ -7,6 +7,7 @@ import { XCircleIcon } from '@heroicons/react/outline';
 import { useContext } from 'react';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
+import axios from 'axios';
 
 function CartScreen() {
 	const router = useRouter();
@@ -22,6 +23,10 @@ function CartScreen() {
 
 	const updateCartHandler = async (item, qty) => {
 		const quantity = Number(qty);
+		const { data } = await axios.get(`/api/products/${item._id}`);
+		if (data.countNeeded - data.countInStock < quantity) {
+			return toast.error('We have met the need! Thank you for your donation!');
+		}
 		dispatch({ type: 'CART_ADD_ITEM', payload: { ...item, quantity } });
 	};
 

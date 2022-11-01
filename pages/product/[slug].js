@@ -1,3 +1,4 @@
+import axios from 'axios';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -19,22 +20,24 @@ import { useEffect } from 'react';
 export default function ProductScreen(props) {
 	const { product } = props;
 	const { state, dispatch } = useContext(Store);
+	const { cart } = state;
+
 	const router = useRouter();
 	if (!product) {
 		return <div>This product was not found.</div>;
 	}
 
 	// this is using the code from Store.js
-	const addToCartHandler = () => {
-		const existItem = state.cart.cartItems.find((x) => x.slug === product.slug);
+	const addToCartHandler = async () => {
+		const existItem = cart.cartItems.find((x) => x.slug === product.slug);
 		const quantity = existItem ? existItem.quantity + 1 : 1;
+		const { data } = await axios.get(`/api/products/${product._id}`);
 
-		if (product.countNeeded - product.countInStock < quantity) {
+		if (data.countNeeded - data.countInStock < quantity) {
 			alert('Thank you! We have met the need!');
 		}
 		// having this code allows us to add the product to the cart
 		dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
-		router.push('/cart');
 	};
 
 	return (

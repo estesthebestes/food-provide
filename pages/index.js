@@ -5,6 +5,7 @@ import ProductItem from '../components/ProductItem';
 import Product from '../models/Product';
 import db from '../utils/db';
 import { Store } from '../utils/Store';
+import axios from 'axios';
 
 export default function Home({ products }) {
 	const { state, dispatch } = useContext(Store);
@@ -15,8 +16,8 @@ export default function Home({ products }) {
 		const quantity = existItem ? existItem.quantity + 1 : 1;
 		const { data } = await axios.get(`/api/products/${product._id}`);
 
-		if (data.countInStock < quantity) {
-			return toast.error('Sorry. Product is out of stock');
+		if (data.countNeeded - data.countInStock < quantity) {
+			return toast.error('We have met the need! Thank you for your donation!');
 		}
 		dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
 

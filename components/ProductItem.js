@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import React from 'react';
+import axios from 'axios';
 
 // this is the product item component, it is the base styling for all of the items that are going to be sold on the website
-export default function ProductItem({ product }) {
+export default function ProductItem({ product, addToCartHandler }) {
 	return (
 		<div className='card'>
 			{/* slug means: A slug is a human-readable, unique identifier, used 
@@ -23,7 +24,11 @@ export default function ProductItem({ product }) {
 				</Link>
 				<p className='mb-2'>{product.brand}</p>
 				<p>${product.price}</p>
-				<button className='primary-button' type='button'>
+				<button
+					className='primary-button'
+					type='button'
+					onClick={() => addToCartHandler(product)}
+				>
 					Add to Cart
 				</button>
 			</div>
