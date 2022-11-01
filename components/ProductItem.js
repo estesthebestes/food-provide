@@ -16,14 +16,18 @@ export default function ProductItem({ product, addToCartHandler }) {
 					src={product.image}
 					alt={product.name}
 					className='rounded shadow'
+					width={640}
+					height={640}
 				></Image>
 			</Link>
+			{/* in this, using product. ***** is getting the products from our databse and using them to populate the cards according to the styling below */}
 			<div className='flex flex-col items-center justify-center p-5'>
 				<Link href={`/product/${product.slug}`}>
 					<h2 className='text-lg'>{product.name}</h2>
 				</Link>
 				<p className='mb-2'>{product.brand}</p>
 				<p>${product.price}</p>
+				{/* this button should add the product to the cart of the user */}
 				<button
 					className='primary-button'
 					type='button'

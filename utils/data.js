@@ -1,12 +1,26 @@
+// incription for the password so i is not visible in the database
 import bcrypt from 'bcryptjs';
 
 const data = {
 	users: [
 		{
 			name: 'Jeff',
-			email: 'admin@example.com',
+			email: 'bob@bob.com',
+			password: bcrypt.hashSync('12345678'),
+			isAdmin: false,
+		},
+
+		{
+			name: 'Hunter',
+			email: 'hunter@example.com',
 			password: bcrypt.hashSync('12345678'),
 			isAdmin: true,
+		},
+		{
+			name: 'Sally',
+			email: 'sally@grandma.com',
+			password: bcrypt.hashSync('12345678'),
+			isAdmin: false,
 		},
 	],
 
@@ -28,7 +42,7 @@ const data = {
 			name: 'Banana',
 			slug: 'banana',
 			category: 'Fruits',
-			image: '/images/apple.jpg',
+			image: '/images/banana.jpg',
 			price: 1.99,
 			brand: 'Aldi',
 			countInStock: 23,
@@ -41,7 +55,7 @@ const data = {
 			name: 'Strawberries',
 			slug: 'strawberries',
 			category: 'Fruits',
-			image: '/images/apple.jpg',
+			image: '/images/stawberry.jpg',
 			price: 4.99,
 			brand: 'HyVee',
 			countInStock: 0,
@@ -53,7 +67,7 @@ const data = {
 			name: 'Blueberries',
 			slug: 'blueberries',
 			category: 'Fruits',
-			image: '/images/apple.jpg',
+			image: '/images/blueberry.jpg',
 			price: 5.99,
 			brand: 'Walmart',
 			countInStock: 10,
