@@ -56,13 +56,11 @@ export default function ProductScreen(props) {
 					<li>
 						<h1 className='.text-lg'>{product.name}</h1>
 					</li>
-					<li>
-						<li>Category: {product.category}</li>
-						<li>Brand: {product.brand}</li>
-						<li>Goal Stock: {product.countNeeded}</li>
-						<li>Current Stock: {product.countInStock}</li>
-						<li>Why it's needed: {product.description}</li>
-					</li>
+					<li>Category: {product.category}</li>
+					<li>Brand: {product.brand}</li>
+					<li>Goal Stock: {product.countNeeded}</li>
+					<li>Current Stock: {product.countInStock}</li>
+					<li>Why it's needed: {product.description}</li>
 				</ul>
 				<div>
 					<div className='card p-5'>

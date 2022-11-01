@@ -36,48 +36,46 @@ export default function layout({ title, children }) {
 			<ToastContainer position='bottom-center' limit={1} />
 			{/* start of html  */}
 			<div className='flex min-h-screen flex-col justify-between'>
-				<header>
-					<nav className='flex h-12 items-center px-4 justify-between shadow-md '>
-						<Link href='/ ' className='text-lg font-bold'>
-							Provide
-						</Link>
-						<div>
-							<Link href='/cart' className='p-2'>
-								Cart
-								{/* if cart.cartItem is greater than zero it means that you have
+				<nav className='flex h-12 items-center px-4 justify-between shadow-md '>
+					<Link href='/ ' className='text-lg font-bold'>
+						Provide
+					</Link>
+					<div>
+						<Link href='/cart' className='p-2'>
+							Cart
+							{/* if cart.cartItem is greater than zero it means that you have
 								at least one item within the cart  */}
-								{cartItemsCount > 0 && (
-									// we are using a reduce function on the cart.cartItems and an accumulator
-									// to show the total number of items in the cart
-									<span className='ml-1 rounded-full bg-indigo-400 px-2 py-1 text-s font-bold text-white'>
-										{cartItemsCount}
-									</span>
-								)}
-							</Link>
-							{/* when the user is logged in we change the login button to a menu */}
-							{status === 'loading' ? (
-								'Loading'
-							) : session?.user ? (
-								<Menu as='div' className='relative inline-block'>
-									<Menu.Button className='text-indigo-500'>
-										{session.user.name}
-									</Menu.Button>
-									<Menu.Items className='absolute right-0 w-56 shadow-lg'>
-										<Menu.Item>
-											<DropdownLink className='dropdown-link' href='/profile'>
-												Profile
-											</DropdownLink>
-										</Menu.Item>
-									</Menu.Items>
-								</Menu>
-							) : (
-								<Link href='/login' className='p-2'>
-									Login
-								</Link>
+							{cartItemsCount > 0 && (
+								// we are using a reduce function on the cart.cartItems and an accumulator
+								// to show the total number of items in the cart
+								<span className='ml-1 rounded-full bg-indigo-400 px-2 py-1 text-s font-bold text-white'>
+									{cartItemsCount}
+								</span>
 							)}
-						</div>
-					</nav>
-				</header>
+						</Link>
+
+						{status === 'loading' ? (
+							'Loading'
+						) : session?.user ? (
+							<Menu as='div' className='relative inline-block'>
+								<Menu.Button className='text-indigo-500'>
+									{session.user.name}
+								</Menu.Button>
+								<Menu.Items className='absolute right-0 w-56 shadow-lg'>
+									<Menu.Item>
+										<DropdownLink className='dropdown-link' href='/profile'>
+											Profile
+										</DropdownLink>
+									</Menu.Item>
+								</Menu.Items>
+							</Menu>
+						) : (
+							<Link href='/login' className='p-2'>
+								Login
+							</Link>
+						)}
+					</div>
+				</nav>
 				<main className='container m-auto mt-4 px-2'>{children}</main>
 				<footer className='flex h-10 justify-center items-center shadow-inner'>
 					Copyright © 2022 Provide
