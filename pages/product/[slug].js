@@ -41,28 +41,43 @@ export default function ProductScreen(props) {
 			<div className='py-2'>
 				<Link href='/'>Back to Products </Link>
 			</div>
-			<div className='grid md:grid-cols-4 md:gap-3'>
-				<div className='md:col-span-2'>
+			<div className='grid md:grid-cols-4 md:gap-3	'>
+				<div className=' object-center	 md:col-span-2'>
 					<Image
 						src={product.image}
 						alt={product.name}
 						width={640}
 						height={640}
 						layout='responsive'
+						className='justify-center'
 					></Image>
 				</div>
 				<ul>
 					<li>
-						<h1 className='.text-lg'>{product.name}</h1>
+						<h1 className='text-xl rounded-md text-center text-white bg-indigo-500 shadow-md pb-3 pt-3'>
+							{product.name}
+						</h1>
 					</li>
-					<li>Category: {product.category}</li>
-					<li>Brand: {product.brand}</li>
-					<li>Goal Stock: {product.countNeeded}</li>
-					<li>Current Stock: {product.countInStock}</li>
-					<li>Why it&apos;s needed: {product.description}</li>
+					<li className=' mt-1 pl-1 pt-3 pb-3 shadow font-bold text-white bg-indigo-400 rounded-lg'>
+						Category: {product.category}
+					</li>
+					<li className=' mt-1 pl-1 pt-3 pb-3 shadow font-bold text-white bg-indigo-400 rounded-lg'>
+						Brand: {product.brand}
+					</li>
+					<li className=' mt-1 pl-1 pt-3 pb-3 shadow font-bold text-white bg-indigo-400 rounded-lg'>
+						Goal Stock: {product.countNeeded}
+					</li>
+					<li className=' mt-1 pl-1 pt-3 pb-3 shadow font-bold text-white bg-indigo-400 rounded-lg'>
+						Current Stock: {product.countInStock}
+					</li>
+					<div>
+						<li className='mt-1 mb-1 pl-1 pt-3 pb-3 shadow-md w-full font-light text-white bg-indigo-400 font-sans rounded'>
+							Why it&apos;s needed: {product.description}
+						</li>
+					</div>
 				</ul>
 				<div>
-					<div className='card p-5'>
+					<div className='card p-5 shadow-2xl'>
 						<div className='mb-2 flex justify-between'>
 							<div> Price </div>
 							<div>${product.price}</div>

@@ -13,7 +13,7 @@ import DropdownLink from './DropdownLink';
 
 // this is the layout component, it is the base styling for all of the web pages going to be displayed
 
-export default function layout({ children }) {
+export default function Layout({ children }) {
 	const { data: session, status } = useSession();
 
 	// we are getting the state of the cart
@@ -40,7 +40,10 @@ export default function layout({ children }) {
 						Provide
 					</Link>
 					<div>
-						<Link href='/cart' className='p-1 mr-6 text-white outline'>
+						<Link
+							href='/cart'
+							className='p-1 mr-6 text-white outline  rounded-md'
+						>
 							Cart
 							{/* if cart.cartItem is greater than zero it means that you have
 								at least one item within the cart  */}
@@ -78,7 +81,7 @@ export default function layout({ children }) {
 						)}
 					</div>
 				</nav>
-				<main className='container m-auto mt-4 px-2 bg-white shadow-2xl'>
+				<main className='container m-auto mt-4 px-2 bg-white shadow-2xl rounded'>
 					{children}
 				</main>
 				<footer className='flex text-white h-10 justify-center items-center shadow-inner bg-indigo-400'>
