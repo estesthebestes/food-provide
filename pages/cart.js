@@ -8,6 +8,7 @@ import { useContext } from 'react';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 function CartScreen() {
 	const router = useRouter();

@@ -1,14 +1,11 @@
 import axios from 'axios';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import Layout from '../../components/Layout';
 import { Store } from '../../utils/Store';
 import Product from '../../models/Product';
 import db from '../../utils/db';
-import { useState } from 'react';
-import { useEffect } from 'react';
 
 {
 	/* slug means: A slug is a human-readable, unique identifier, used 
@@ -22,7 +19,6 @@ export default function ProductScreen(props) {
 	const { state, dispatch } = useContext(Store);
 	const { cart } = state;
 
-	const router = useRouter();
 	if (!product) {
 		return <div>This product was not found.</div>;
 	}

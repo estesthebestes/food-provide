@@ -1,24 +1,23 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useContext } from 'react';
+import { UseContext } from 'react';
 import { Store } from '../utils/Store';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { Menu } from '@headlessui/react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useSession } from 'next-auth/react';
-import { status } from 'next-auth/react';
+import UseSession from 'next-auth/react';
 import DropdownLink from './DropdownLink';
 
 // this is the layout component, it is the base styling for all of the web pages going to be displayed
 
-export default function layout({ title, children }) {
-	const { status, data: session } = useSession();
+export default function layout({ children }) {
+	const { status, data: session } = UseSession();
 
 	// we are getting the state of the cart
-	const { state, dispatch } = useContext(Store);
+	const { state } = useContext(Store);
 	const { cart } = state;
 	const [cartItemsCount, setCartItemsCount] = useState(0);
 	useEffect(() => {

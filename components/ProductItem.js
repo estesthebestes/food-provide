@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import axios from 'axios';
+import Image from 'next/image';
 
 // this is the product item component, it is the base styling for all of the items that are going to be sold on the website
 export default function ProductItem({ product, addToCartHandler }) {
@@ -12,11 +12,11 @@ export default function ProductItem({ product, addToCartHandler }) {
       to see, at a glance, what the item is. 
       definition from https://itnext.io/whats-a-slug-f7e74b6c23e0 */}
 			<Link href={`/product/${product.slug}`}>
-				<img
+				<Image
 					src={product.image}
 					alt={product.name}
 					className='rounded shadow'
-				></img>
+				></Image>
 			</Link>
 			<div className='flex flex-col items-center justify-center p-5'>
 				<Link href={`/product/${product.slug}`}>

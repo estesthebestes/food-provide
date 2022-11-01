@@ -5,7 +5,6 @@ import Layout from '../components/Layout';
 import { signIn } from 'next-auth/react';
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
-import { redirect } from 'next/dist/server/api-utils';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import { getError } from '../utils/error';
