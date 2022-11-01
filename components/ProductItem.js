@@ -5,7 +5,7 @@ import Image from 'next/image';
 // this is the product item component, it is the base styling for all of the items that are going to be sold on the website
 export default function ProductItem({ product, addToCartHandler }) {
 	return (
-		<div className='card'>
+		<div className='card '>
 			{/* slug means: A slug is a human-readable, unique identifier, used 
       to identify a resource instead of a less human-readable identifier like an id.
       You use a slug when you want to refer to an item while preserving the ability 

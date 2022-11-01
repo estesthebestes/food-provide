@@ -35,30 +35,32 @@ export default function layout({ children }) {
 			<ToastContainer position='bottom-center' limit={1} />
 			{/* start of html  */}
 			<div className='flex min-h-screen flex-col justify-between'>
-				<nav className='flex h-12 items-center px-4 justify-between shadow-md '>
-					<Link href='/ ' className='text-lg font-bold'>
+				<nav className='flex h-12 items-center px-4 justify-between shadow-md bg-indigo-400'>
+					<Link href='/ ' className='text-lg text-white font-bold '>
 						Provide
 					</Link>
 					<div>
-						<Link href='/cart' className='p-2'>
+						<Link href='/cart' className='p-1 mr-6 text-white outline'>
 							Cart
 							{/* if cart.cartItem is greater than zero it means that you have
 								at least one item within the cart  */}
 							{cartItemsCount > 0 && (
 								// we are using a reduce function on the cart.cartItems and an accumulator
 								// to show the total number of items in the cart
-								<span className='ml-1 rounded-full bg-indigo-400 px-2 py-1 text-s font-bold text-white'>
+								<span className='ml-1 rounded-full bg-white text-gray-700 px-2 py-0.5 text-s '>
 									{cartItemsCount}
 								</span>
 							)}
 						</Link>
 
 						{/* below is where we are including the dropdown menu */}
+
+						{/* checking to see if there is already a user logged in. If there is it shows the profile selection if not then it displays */}
 						{status === 'loading' ? (
 							'Loading'
 						) : session?.user ? (
 							<Menu as='div' className='relative inline-block'>
-								<Menu.Button className='text-indigo-500'>
+								<Menu.Button className='text-white'>
 									{session.user.name}
 								</Menu.Button>
 								<Menu.Items className='absolute right-0 w-56 shadow-lg'>
@@ -76,8 +78,10 @@ export default function layout({ children }) {
 						)}
 					</div>
 				</nav>
-				<main className='container m-auto mt-4 px-2'>{children}</main>
-				<footer className='flex h-10 justify-center items-center shadow-inner'>
+				<main className='container m-auto mt-4 px-2 bg-white shadow-2xl'>
+					{children}
+				</main>
+				<footer className='flex text-white h-10 justify-center items-center shadow-inner bg-indigo-400'>
 					Copyright © 2022 Provide
 				</footer>
 			</div>
