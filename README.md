@@ -5,7 +5,7 @@ Provide's aim to help connect donators to local nonprofits. I plan to continue d
  - Implemented a cart system: Can add to cart and remove from cart. The cart also shows the total price of all of the items that are currently in the cart.
  - Connected to MongoDB
  - Can log in to accounts that are in Database 
- - On the main page with the products, items are being correctly displayed in their cards. Currently using stock photos which will be replaced by photos that I own.
+ - On the main page with the products, items are being displayed in their cards. Currently using stock photos which will be replaced by photos that I own.
  
 
 
