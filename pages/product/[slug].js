@@ -52,7 +52,7 @@ export default function ProductScreen(props) {
 						className='mb-2'
 					></Image>
 				</div>
-				<ul>
+				<ul className='shadow justify-center'>
 					<li>
 						<h1 className='text-xl rounded-md text-center text-white bg-indigo-500 shadow-md pb-3 pt-3'>
 							{product.name}
