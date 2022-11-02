@@ -8,6 +8,10 @@ Provide's aim to help connect donators to local nonprofits. I plan to continue d
  - On the main page with the products, items are being displayed in their cards. Currently using stock photos which will be replaced by photos that I own.
  
 
+## Not Yet Implemented
+
+
+
 
 ## Bugs
 -- Cart after a certain number of items likes to go give $$ values wayyyy beyond two decimal places.
