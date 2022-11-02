@@ -10,25 +10,28 @@ import { useSession } from 'next-auth/react';
 import { getError } from '../utils/error';
 
 export default function LoginScreen() {
+	// our react hook to get the users session data
 	const { data: session } = useSession();
 
 	const router = useRouter();
 
 	const { redirect } = router.query;
 
+	// used for redirections based on the users session
 	useEffect(() => {
 		if (session?.user) {
 			router.push(redirect || '/');
 		}
 	}, [router, session, redirect]);
 
+	// we use this to handle the form data below for login
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
 
-	// this is code to handle the sign in with email and password when the user enters it
+	// this is code to handle the sign in with email and password when the user enters it and checks for errors
 	const submitHandler = async ({ email, password }) => {
 		try {
 			const result = await signIn('credentials', {
